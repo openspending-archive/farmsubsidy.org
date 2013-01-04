@@ -16,7 +16,7 @@ for COUNTRY in "AT" "BE" "BG" "CY" "CZ" "DE" "DK" "EE" "ES" "FI" "GR" "HU" "IE" 
   done
   $SQL -c "COPY recipient FROM '$WD/$COUNTRY/recipient.txt' WITH CSV DELIMITER ';' QUOTE '\"' HEADER ENCODING 'Utf-8';"
   for FN in "scheme.txt" "schemes.txt"; do
-    if [ -f $COUNTRY/$FN && $COUNTRY != "DK" ]; then
+    if [ -f $COUNTRY/$FN ] && [ $COUNTRY != "DK" ]; then
       $SQL -c "COPY scheme FROM '$WD/$COUNTRY/$FN' WITH CSV DELIMITER ';' QUOTE '\"' HEADER ENCODING 'Utf-8';"
     fi
   done

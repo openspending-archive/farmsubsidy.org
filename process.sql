@@ -17,6 +17,12 @@ ALTER TABLE scheme ALTER COLUMN id SET NOT NULL;
 ALTER SEQUENCE scheme_id_seq OWNED BY scheme.id;
 ALTER TABLE payment ADD COLUMN scheme_id INT;
 
+ALTER TABLE recipient RENAME "nameEnglish" TO label;
+ALTER TABLE recipient ADD COLUMN name VARCHAR(2000);
+UPDATE recipient SET
+  label = BTRIM(label, ' ;:-,`'),
+  name = BTRIM(LOWER("GlobalSchemeId"), ' ;:-,`');
+
 -- RECIPIENT TABLE
 
 CREATE SEQUENCE recipient_id_seq;
@@ -26,7 +32,10 @@ ALTER SEQUENCE recipient_id_seq OWNED BY recipient.id;
 ALTER TABLE payment ADD COLUMN recipient_id INT;
 
 ALTER TABLE recipient RENAME name TO label;
-UPDATE recipient SET label = BTRIM(label, ' ;:-,`');
+ALTER TABLE recipient ADD COLUMN name VARCHAR(2000);
+UPDATE recipient SET
+  label = BTRIM(label, ' ;:-,`'),
+  name = BTRIM(LOWER("globalRecipientId"), ' ;:-,`');
 
 -- PAYMENT TABLE
 
@@ -35,7 +44,7 @@ ALTER TABLE payment ADD COLUMN "amount" DOUBLE PRECISION;
 
 UPDATE payment AS p SET
   id = MD5(p."globalPaymentId"),
-  amount = cast(p."amountEuro" as double precision),
+  amount = cast(p."amountEuro" as double precision)
   scheme_id = s.id,
   recipient_id = r.id,
   country_id = c.id
@@ -43,8 +52,7 @@ UPDATE payment AS p SET
   WHERE
     s."GlobalSchemeId" = p."globalSchemeId"
     AND r."globalRecipientId" = p."globalRecipientId"
-    AND c."code" = p."countryPayment"
-  ;
+    AND c."code" = p."countryPayment";
 
 -- UPDATE payment AS p SET scheme_id=s.id FROM scheme s WHERE s."GlobalSchemeId" = p."globalSchemeId";
 -- UPDATE payment AS p SET recipient_id=r.id FROM recipient r WHERE r."globalRecipientId" = p."globalRecipientId";
@@ -57,10 +65,10 @@ CREATE INDEX payment_id_idx ON payment (id);
 
 -- DROP SUPERFLUOUS COLUMNS
 
-ALTER TABLE payment DROP COLUMN "paymentId";
-ALTER TABLE payment DROP COLUMN "countryPayment";
-ALTER TABLE recipient DROP COLUMN "total";
-ALTER TABLE recipient DROP COLUMN "countryPayment";
-ALTER TABLE scheme DROP COLUMN "total";
+-- ALTER TABLE payment DROP COLUMN "paymentId";
+-- ALTER TABLE payment DROP COLUMN "countryPayment";
+-- ALTER TABLE recipient DROP COLUMN "total";
+-- ALTER TABLE recipient DROP COLUMN "countryPayment";
+-- ALTER TABLE scheme DROP COLUMN "total";
 
 

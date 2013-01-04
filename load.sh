@@ -16,14 +16,17 @@ for COUNTRY in "AT" "BE" "BG" "CY" "CZ" "DE" "DK" "EE" "ES" "FI" "GR" "HU" "IE" 
   done
   $SQL -c "COPY recipient FROM '$WD/$COUNTRY/recipient.txt' WITH CSV DELIMITER ';' QUOTE '\"' HEADER ENCODING 'Utf-8';"
   for FN in "scheme.txt" "schemes.txt"; do
-    if [ -f $COUNTRY/$FN ]; then
+    if [ -f $COUNTRY/$FN && $COUNTRY != "DK" ]; then
       $SQL -c "COPY scheme FROM '$WD/$COUNTRY/$FN' WITH CSV DELIMITER ';' QUOTE '\"' HEADER ENCODING 'Utf-8';"
     fi
   done
 done
 
+exit
+
 $SQL -c "ALTER TABLE recipient ADD COLUMN total VARCHAR(2000);"
 $SQL -c "ALTER TABLE scheme ADD COLUMN total VARCHAR(2000);"
+$SQL -c "COPY scheme FROM '$WD/DK/scheme.txt' WITH CSV DELIMITER ';' QUOTE '\"' HEADER ENCODING 'Utf-8';"
 
 unzip -n -d $WD FR.zip
 $SQL -c "COPY payment FROM '$WD/FR/payment.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"

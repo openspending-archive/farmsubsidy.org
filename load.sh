@@ -22,16 +22,18 @@ for COUNTRY in "AT" "BE" "BG" "CY" "CZ" "DE" "DK" "EE" "ES" "FI" "GR" "HU" "IE" 
   done
 done
 
+$SQL -c "ALTER TABLE recipient ADD COLUMN total VARCHAR(2000);"
+$SQL -c "ALTER TABLE scheme ADD COLUMN total VARCHAR(2000);"
 
 unzip -n -d $WD FR.zip
-unzip -n -d $WD GB.zip
 $SQL -c "COPY payment FROM '$WD/FR/payment.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"
 $SQL -c "COPY recipient FROM '$WD/FR/recipient.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"
 $SQL -c "COPY scheme FROM '$WD/FR/scheme.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"
+
+unzip -n -d $WD GB.zip
 $SQL -c "COPY payment FROM '$WD/GB/payment.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"
 $SQL -c "COPY recipient FROM '$WD/GB/recipient.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"
 $SQL -c "COPY scheme FROM '$WD/GB/scheme.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"
-
 
 # TODO: fix recupient.name
 # TODO: fix scheme.GlobalSchemeId

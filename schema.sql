@@ -1,7 +1,7 @@
-DROP TABLE payment;
-DROP TABLE recipient;
-DROP TABLE scheme;
-DROP TABLE country;
+DROP TABLE IF EXISTS payment;
+DROP TABLE IF EXISTS recipient;
+DROP TABLE IF EXISTS scheme;
+DROP TABLE IF EXISTS country;
 
 CREATE TABLE payment (
   "paymentId" INTEGER NOT NULL,

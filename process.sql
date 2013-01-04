@@ -17,9 +17,9 @@ ALTER TABLE scheme ALTER COLUMN id SET NOT NULL;
 ALTER SEQUENCE scheme_id_seq OWNED BY scheme.id;
 ALTER TABLE payment ADD COLUMN scheme_id INT;
 
-ALTER TABLE recipient RENAME "nameEnglish" TO label;
-ALTER TABLE recipient ADD COLUMN name VARCHAR(2000);
-UPDATE recipient SET
+ALTER TABLE scheme RENAME "nameEnglish" TO label;
+ALTER TABLE scheme ADD COLUMN name VARCHAR(2000);
+UPDATE scheme SET
   label = BTRIM(label, ' ;:-,`'),
   name = BTRIM(LOWER("GlobalSchemeId"), ' ;:-,`');
 

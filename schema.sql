@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS payment;
 DROP TABLE IF EXISTS recipient;
 DROP TABLE IF EXISTS scheme;
 DROP TABLE IF EXISTS country;
+DROP TABLE IF EXISTS time;
 
 CREATE TABLE payment (
   "paymentId" INTEGER NOT NULL,
@@ -50,4 +51,17 @@ CREATE TABLE scheme (
 CREATE TABLE country (
   "label" VARCHAR(2000),
   "code" VARCHAR(3)
+);
+
+CREATE TABLE time (
+    id SERIAL,
+    week text,
+    yearmonth text,
+    name text,
+    year text,
+    intyear int,
+    month text,
+    quarter text,
+    day text,
+    label text
 );

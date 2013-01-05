@@ -22,8 +22,6 @@ for COUNTRY in "AT" "BE" "BG" "CY" "CZ" "DE" "DK" "EE" "ES" "FI" "GR" "HU" "IE" 
   done
 done
 
-exit
-
 $SQL -c "ALTER TABLE recipient ADD COLUMN total VARCHAR(2000);"
 $SQL -c "ALTER TABLE scheme ADD COLUMN total VARCHAR(2000);"
 $SQL -c "COPY scheme FROM '$WD/DK/scheme.txt' WITH CSV DELIMITER ';' QUOTE '\"' HEADER ENCODING 'Utf-8';"
@@ -38,10 +36,7 @@ $SQL -c "COPY payment FROM '$WD/GB/payment.csv' WITH CSV DELIMITER ';' QUOTE '\"
 $SQL -c "COPY recipient FROM '$WD/GB/recipient.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"
 $SQL -c "COPY scheme FROM '$WD/GB/scheme.csv' WITH CSV DELIMITER ';' QUOTE '\"' ENCODING 'Utf-8';"
 
-# TODO: fix recupient.name
-# TODO: fix scheme.GlobalSchemeId
-# TODO: fix scheme.nameEnglish
-# TODO: fix scheme.countryPayment
-# TODO: fix recipient.countryRecipient
-# TODO: fix payment.amountEuro
-# TODO: fix payment.globalPaymentId
+
+$SQL -f keys.sql
+$SQL -f process.sql
+$SQL -f final_optimize.sql

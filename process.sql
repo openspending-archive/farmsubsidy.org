@@ -16,7 +16,7 @@ ALTER TABLE scheme RENAME "nameEnglish" TO label;
 ALTER TABLE scheme ADD COLUMN name VARCHAR(2000);
 UPDATE scheme SET
   label = BTRIM(label, ' ;:-,`'),
-  name = BTRIM(LOWER("globalRecipientId"), ' ;:-,`');
+  name = BTRIM(LOWER("GlobalSchemeId"), ' ;:-,`');
 
 ALTER TABLE recipient RENAME name TO label;
 ALTER TABLE recipient ADD COLUMN name VARCHAR(2000);

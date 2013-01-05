@@ -44,7 +44,7 @@ ALTER TABLE payment ADD COLUMN "amount" DOUBLE PRECISION;
 
 UPDATE payment AS p SET
   id = MD5(p."globalPaymentId"),
-  amount = cast(p."amountEuro" as double precision)
+  amount = cast(p."amountEuro" as double precision),
   scheme_id = s.id,
   recipient_id = r.id,
   country_id = c.id

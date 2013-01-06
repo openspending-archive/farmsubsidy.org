@@ -5,6 +5,7 @@ ALTER TABLE payment DROP COLUMN "globalRecipientId";
 ALTER TABLE payment DROP COLUMN "globalRecipientIdx";
 ALTER TABLE payment DROP COLUMN "globalSchemeId";
 ALTER TABLE payment DROP COLUMN "amountNationalCurrency";
+ALTER TABLE payment DROP COLUMN "amountEuro";
 ALTER TABLE payment DROP COLUMN "year";
 ALTER TABLE payment DROP COLUMN "paymentId";
 ALTER TABLE payment DROP COLUMN "countryPayment";

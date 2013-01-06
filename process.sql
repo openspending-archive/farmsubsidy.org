@@ -37,7 +37,7 @@ UPDATE payment AS p SET country_id = c.id FROM country c WHERE c."code" = p."cou
 UPDATE payment AS p SET time_id = t.id FROM time t WHERE t.intyear = p."year";
 
 INSERT INTO scheme (name, label) VALUES ('unknown', '(Unknown Scheme)');
-INSERT INTO recipient (name, label) VALUES ('unknown', '(Unknown Recipient)');
+INSERT INTO recipient (name, "recipientId", label) VALUES ('unknown', 'unknown', '(Unknown Recipient)');
 
 UPDATE payment SET scheme_id = (SELECT id FROM scheme WHERE name = 'unknown') WHERE scheme_id IS NULL;
 UPDATE payment SET recipient_id = (SELECT id FROM recipient WHERE name = 'unknown') WHERE recipient_id IS NULL;

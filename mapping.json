@@ -1,0 +1,165 @@
+{
+  "country": {
+    "attributes": {
+      "code": {
+        "column": "countryPayment", 
+        "datatype": "string", 
+        "default_value": ""
+      }, 
+      "name": {
+        "column": "amountNationalCurrency", 
+        "datatype": "id", 
+        "default_value": ""
+      }, 
+      "label": {
+        "column": "amountNationalCurrency", 
+        "datatype": "string", 
+        "default_value": ""
+      }
+    }, 
+    "type": "compound", 
+    "description": null, 
+    "key": true, 
+    "label": "Country"
+  }, 
+  "amount": {
+    "default_value": "", 
+    "description": "The amount in Euro", 
+    "datatype": "float", 
+    "label": "Amount", 
+    "column": "amountEuro", 
+    "type": "measure"
+  }, 
+  "scheme": {
+    "description": "Scheme under which the subsidy was paid. ", 
+    "label": "Scheme", 
+    "facet": true, 
+    "key": true, 
+    "attributes": {
+      "name": {
+        "column": "GlobalSchemeId", 
+        "datatype": "id", 
+        "default_value": ""
+      }, 
+      "label": {
+        "column": "nameEnglish", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "nameNationalLanguage": {
+        "column": "nameEnglish", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "budgetlines8Digit": {
+        "column": "nameEnglish", 
+        "datatype": "string", 
+        "default_value": ""
+      }
+    }, 
+    "type": "compound"
+  }, 
+  "to": {
+    "attributes": {
+      "name": {
+        "column": "address1", 
+        "datatype": "id", 
+        "default_value": ""
+      }, 
+      "label": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "address1": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "address2": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "zipcode": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "town": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "countryRecipient": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "geo1": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "geo2": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "geo3": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "geo4": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "geo1NationalLanguage": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "geo2NationalLanguage": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "geo3NationalLanguage": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "geo4NationalLanguage": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "lat": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      },
+      "lng": {
+        "column": "address1", 
+        "datatype": "string", 
+        "default_value": ""
+      }
+    }, 
+    "type": "compound", 
+    "description": null, 
+    "key": true, 
+    "label": "Recipient"
+  }, 
+  "time": {
+    "default_value": "", 
+    "description": null, 
+    "format": null, 
+    "column": "year", 
+    "label": "Year", 
+    "datatype": "date", 
+    "key": true, 
+    "type": "date"
+  }
+}

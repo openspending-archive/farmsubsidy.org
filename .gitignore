@@ -1,2 +1,3 @@
 *.zip
 etl/data/*
+fe/node_modules/*
